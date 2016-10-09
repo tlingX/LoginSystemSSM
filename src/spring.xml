@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+      xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns:mvc="http://www.springframework.org/schema/mvc"
+		
+      xsi:schemaLocation="
+	
+	  http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        
+      ">
+	
+      
+      
+      <!-- 注册一个AdminDao的类 -->
+      <bean id="adminDaoID" class="com.jpzhutech.dao.impl.AdminDao"></bean>
+      
+      <!-- 注册一个AdminService类 -->
+      <bean id="adminServiceID" class="com.jpzhutech.service.impl.AdminService">
+          <property name="adminDao" ref="adminDaoID"></property>
+      </bean>
+      
+     <!--   在注册Action时已经实例化了SignAdminAction类的对象，所以在这里不再实例化该对象
+      注册一个SignAdminAction的类
+      <bean id="signAdminActionID" class="com.jpzhutech.action.SignAdminAction">
+          <property name="adminService" ref="adminServiceID"></property>
+      </bean>
+       -->
+       
+       <!-- 注册Action -->
+      <bean name="/signin.action" class="com.jpzhutech.action.SignAdminAction">
+          <property name="adminService" ref="adminServiceID"></property>
+      </bean>
+      <!-- 映射器 --> 
+      <!-- 适配器 -->
+      <!-- 视图解析器，如果在action中渲染的是真实的视图，该解析器不需要配置，如果是逻辑视图，才必须要写 -->
+      <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+          <property name="prefix" value="/"></property>
+          <property name="suffix" value=".jsp"></property>
+      </bean>
+         
+      
+      
+      
+</beans>

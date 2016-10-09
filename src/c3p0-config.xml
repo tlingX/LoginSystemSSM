@@ -1,0 +1,25 @@
+<c3p0-config>
+  <default-config>
+     <property name="driverClass">org.postgresql.Driver</property> 
+     <property name="jdbcUrl">jdbc:postgresql://192.168.100.120:5432/postgres</property> 
+     <property name="user">postgres</property> 
+     <!-- <property name="password">root</property>  -->
+     <property name="initialPoolSize">5</property> 
+     <property name="maxPoolSize">10</property> 
+
+  </default-config>
+
+
+  <!-- 配置多数据源时使用，在ComboPooledDataSource核心类中存在一个带String参数的构造函数，该构造函数当不用写时，默认读取的是default-config
+       当使用该参数，并且写上name-config中的name参数时，会去读取下面的这个配置文件
+   -->
+  <named-config name="MySQLConfig">
+    <property name="driverClass">com.mysql.jdbc.Driver</property> 
+     <property name="jdbcUrl">jdbc:mysql://127.0.0.1:3306/test</property> 
+     <property name="user">root</property> 
+     <property name="password">root</property> 
+     <property name="initialPoolSize">5</property> 
+     <property name="maxPoolSize">10</property> 
+   </named-config>
+
+</c3p0-config>
