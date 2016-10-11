@@ -49,7 +49,7 @@
       </bean>
       <!-- 映射器 --> 
       <!-- 适配器 -->
-      <!-- 视图解析器，如果在action中渲染的是真实的视图，该解析器不需要配置，如果是逻辑视图，才必须要写 -->
+      <!-- 视图解析器，如果在action中渲染的是真实的视图，该解析器不需要配置，如果是逻辑视图，才必须要写，所有的视图（不管你在程序中是写逻辑视图还是真实视图，在这里都会被解析，所以要写逻辑视图就全部写逻辑视图） -->
       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
           <property name="prefix" value="/"></property>
           <property name="suffix" value=".jsp"></property>

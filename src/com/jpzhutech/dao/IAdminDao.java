@@ -11,4 +11,8 @@ public interface IAdminDao {
 	public boolean addAdmin(Admin admin);
 
 	String findByEmail(Admin admin);
+	
+	public String findPwd(Admin admin);
+	
+	boolean getUserState(Admin admin);
 }

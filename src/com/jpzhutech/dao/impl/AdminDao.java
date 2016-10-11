@@ -82,6 +82,46 @@ System.out.println("已经注册过");
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public String findPwd(Admin admin){
+		try {
+			//?在DButils中表示一个占位符
+			String sql = "select * from public.admin where email=?";
+System.out.println("进入到数据库之后收到的邮箱参数为:"+admin.getEmail());
+			admin =  JdbcUtils.getQueryRuner().query(sql,
+					new BeanHandler<Admin>(Admin.class), admin.getEmail()
+				);  
+			if (admin != null) {
+				return admin.getPwd();
+			}else{
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}	
+		
+	}
+	
+	//得到email当前用户的状态
+	public boolean getUserState(Admin admin){
+		try {
+			//?在DButils中表示一个占位符
+			String sql = "select * from public.admin where email=? and pwd=?";
+			admin = JdbcUtils.getQueryRuner().query(sql,
+					new BeanHandler<Admin>(Admin.class), admin.getUserName(),  //admin.getUserName()获取其用户名
+					admin.getPwd());  //admin.getPwd()获取其密码
+			if(admin != null){
+				return admin.isState();
+			}else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	@Test
 	public void test(){
 		AdminDao adminDao = new AdminDao();

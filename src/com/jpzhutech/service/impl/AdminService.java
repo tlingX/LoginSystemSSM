@@ -39,5 +39,12 @@ public class AdminService implements IAdminService{
 		return adminDao.getUUID(admin);
 	}
 
+	public String findPwd(Admin admin){
+		return adminDao.findPwd(admin);
+	}
+	
+	public boolean getUserState(Admin admin){
+		return adminDao.getUserState(admin);
+	}
 	
 }
