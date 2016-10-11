@@ -43,11 +43,11 @@ System.out.println(adminService.getUUID(admin));  //调试判断是否正确的�
 System.out.println("密码错误");
 			return  "password_error";
 		}else if(!adminService.getUserState(admin)){   //查看是否成功的点击链接激活账户
-System.out.println(adminService.getUserState(admin));
+System.out.println(!adminService.getUserState(admin));
 			return "activate";
 		}else{   //成功的登录
 System.out.println("成功的登录");
-			return null;
+			return "login_success";
 		}
 		
 		

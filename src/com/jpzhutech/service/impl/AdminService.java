@@ -47,4 +47,13 @@ public class AdminService implements IAdminService{
 		return adminDao.getUserState(admin);
 	}
 	
+	public Admin findByUUID(String string){
+		return adminDao.findByUUID(string);
+	}
+
+	@Override
+	public void updateState(Admin admin) {
+		adminDao.updateState(admin);
+	}
+	
 }

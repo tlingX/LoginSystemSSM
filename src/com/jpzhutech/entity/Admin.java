@@ -58,6 +58,10 @@ public class Admin {
 	public void setState(boolean state) {
 		this.state = state;
 	}
+	public Admin(String id) {
+		super();
+		this.id = id;
+	}
 	
 	
 	

@@ -109,7 +109,7 @@ System.out.println("进入到数据库之后收到的邮箱参数为:"+admin.get
 			//?在DButils中表示一个占位符
 			String sql = "select * from public.admin where email=? and pwd=?";
 			admin = JdbcUtils.getQueryRuner().query(sql,
-					new BeanHandler<Admin>(Admin.class), admin.getUserName(),  //admin.getUserName()获取其用户名
+					new BeanHandler<Admin>(Admin.class), admin.getEmail(),  //admin.getUserName()获取其用户名
 					admin.getPwd());  //admin.getPwd()获取其密码
 			if(admin != null){
 				return admin.isState();
@@ -122,13 +122,57 @@ System.out.println("进入到数据库之后收到的邮箱参数为:"+admin.get
 		}
 	}
 	
+	
+
+	@Override
+	public Admin findByUUID(String string) {
+		Admin admin = null;
+		try {
+			//?在DButils中表示一个占位符
+			String sql = "select * from public.admin where id=?";
+			admin =  JdbcUtils.getQueryRuner().query(sql,
+					new BeanHandler<Admin>(Admin.class),string);    //根据UUID去查找返回数据库中相应的admin对象
+			if (admin != null) {
+				return admin;
+			}else{
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+	//当点击链接之后修改数据库中用户的状态信息为true，使之可以登录
+	public void updateState(Admin admin){
+		try {
+			//?在DButils中表示一个占位符
+			String sql = "select * from public.admin where email=?";
+			admin = JdbcUtils.getQueryRuner().query(sql,
+					new BeanHandler<Admin>(Admin.class), admin.getEmail());
+			if(admin != null){
+				admin.setState(true);
+				//将结果写回数据库
+				JdbcUtils.getQueryRuner().update(
+    					"update public.admin set state=? where email=?",admin.isState(),admin.getEmail());
+			}else {
+				return;
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+		
 	@Test
 	public void test(){
 		AdminDao adminDao = new AdminDao();
 		Admin admin = new Admin("1000","jpzhu","560128","13101900@qq.com",false);
 		System.out.println(admin);
 		adminDao.addAdmin(admin);
-		System.out.println("UUID:"+adminDao.getUUID(admin));
+		System.out.println("UUID:"+adminDao.findByUUID("cccc7ebc-82a6-4fa5-8053-5ada98173132"));  //手动测试是否能够根据UUID成功的找到对象的admin对象
 		
 	}
 }

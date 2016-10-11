@@ -15,4 +15,10 @@ public interface IAdminDao {
 	public String findPwd(Admin admin);
 	
 	boolean getUserState(Admin admin);
+	
+	public Admin findByUUID(String string);
+	
+	public void updateState(Admin admin);
+	
+	
 }
