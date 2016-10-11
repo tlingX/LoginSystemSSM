@@ -20,8 +20,8 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public String findByName(Admin admin) {
-		return adminDao.findByName(admin);
+	public String findByEmail(Admin admin) {
+		return adminDao.findByEmail(admin);
 	}
 
 	@Override

@@ -14,16 +14,16 @@ import com.jpzhutech.utils.JdbcUtils;
 public class AdminDao implements IAdminDao{
 	
 	    //根据用户查找数据中是否存在该用户名，如果存在返回用户名，如果不存在，则返回空
-		public String  findByName(Admin admin) {
+		public String  findByEmail(Admin admin) {
 			try {
 				//?在DButils中表示一个占位符
-				String sql = "select * from public.admin where userName=?";
+				String sql = "select * from public.admin where email=?";
 				//执行该SQL语句并返回一个admin对象
 				admin =  JdbcUtils.getQueryRuner().query(sql,
-						new BeanHandler<Admin>(Admin.class), admin.getUserName() //admin.getUserName()获取其用户名
+						new BeanHandler<Admin>(Admin.class), admin.getEmail() //根据email查找数据库中是否存在该用户
 					); 
 				if (admin != null) {
-					return admin.getUserName();
+					return admin.getEmail();
 				}else{
 					return null;
 				}
@@ -37,12 +37,12 @@ public class AdminDao implements IAdminDao{
 	@Override
 	public boolean addAdmin(Admin admin) {
 		//在数据库中根据用户名查找，如果发现用户名已经存在则不将新的数据插入到数据库中，而是提示用户已经注册过
-        String oldUserName = findByName(admin);
+        String oldEmail = findByEmail(admin);
 System.out.println("=====================================");
-System.out.println("在数据库中的旧用户名为："+oldUserName);
+System.out.println("在数据库中的旧用户名为："+oldEmail);
 System.out.println("=====================================");
 
-        if(oldUserName != null){
+        if(oldEmail != null){
 System.out.println("已经注册过");
         	return false;
         }else {

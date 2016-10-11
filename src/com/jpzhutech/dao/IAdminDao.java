@@ -10,5 +10,5 @@ import com.jpzhutech.entity.Admin;
 public interface IAdminDao {
 	public boolean addAdmin(Admin admin);
 
-	String findByName(Admin admin);
+	String findByEmail(Admin admin);
 }
