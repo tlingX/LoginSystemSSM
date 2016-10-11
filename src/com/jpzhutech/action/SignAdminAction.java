@@ -90,7 +90,7 @@ System.out.println("表单提交过来时的数据是:"+admin.toString());
 					//发送的链接包括其写入到数据库中的UUID，也就是链接localhost:8080/Login_Sys/ActivateServlet和UUID的拼接，#连接两个字符串
 					//获取UUID
 System.out.println(adminService.getUUID(admin));
-					message.setContent("<h1>恭喜你注册成功，请点击下面的连接激活账户</h1><h3><a href='http://localhost:8080/Login_Sys/ActivateServlet?code="+adminService.getUUID(admin)+"'>http://localhost:8080/Login_Sys/ActivateServlet</a></h3>","text/html;charset=utf-8");
+					message.setContent("<h1>恭喜你注册成功，请点击下面的连接激活账户</h1><h3><a href='http://localhost:8080/Login_Sys_Spring_SpringMVC_c3p0/Activate.action?code="+adminService.getUUID(admin)+"'>http://localhost:8080/Login_Sys_Spring_SpringMVC_c3p0/Activate</a></h3>","text/html;charset=utf-8");
 					Transport transport = session.getTransport();
 					transport.connect(host, from, authcode);
 					message.saveChanges();
