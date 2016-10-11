@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <form action="${pageContext.request.contextPath }/login.action">
+    <form action="${pageContext.request.contextPath }/login.action" method="POST">
         <table border="1" align="center">
             <tr>
                 <th>用户名</th>

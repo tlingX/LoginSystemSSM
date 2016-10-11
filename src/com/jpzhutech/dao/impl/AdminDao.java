@@ -11,7 +11,9 @@ import com.jpzhutech.dao.IAdminDao;
 import com.jpzhutech.entity.Admin;
 import com.jpzhutech.utils.JdbcUtils;
 
-@Component(value="adminDaoID")
+
+
+@Component(value="adminDaoID")  //属性注入值
 public class AdminDao implements IAdminDao{
 	
 	    //根据用户查找数据中是否存在该用户名，如果存在返回用户名，如果不存在，则返回空

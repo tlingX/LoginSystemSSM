@@ -54,8 +54,11 @@
           <property name="prefix" value="/"></property>
           <property name="suffix" value=".jsp"></property>
       </bean>
-         
+      
+      <!-- 扫描com.jpzhutech.action中的@Controller @RequestMapping --> 
       <context:component-scan base-package="com.jpzhutech.action"></context:component-scan>
       
+      <!-- 让SpringIOC去解析@Resource这些注解的含义，可以省略 -->
+      <context:annotation-config></context:annotation-config>
       
 </beans>
