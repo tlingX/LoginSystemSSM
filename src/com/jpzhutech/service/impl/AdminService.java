@@ -28,5 +28,9 @@ public class AdminService implements IAdminService{
 	public boolean addAdmin(Admin admin) {
 		return adminDao.addAdmin(admin);
 	}
+	
+	public String getUUID(Admin admin){
+		return adminDao.getUUID(admin);
+	}
 
 }

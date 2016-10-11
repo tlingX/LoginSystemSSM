@@ -58,15 +58,34 @@ System.out.println("已经注册过");
     			
     			 
     		}
-		}
-		}
+		}//else语句结束
+		}  //方法结束
 	
+	//从数据库中获取用户的UUID
+	public String getUUID(Admin admin){
+		String sql = "select * from public.admin where email=?";   //根据用户的email查找到数据库中存放的整个对象
+		try {
+			//执行该SQL语句并返回一个admin对象
+			admin =  JdbcUtils.getQueryRuner().query(sql,
+					new BeanHandler<Admin>(Admin.class), admin.getEmail() //根据email查找数据库中是否存在该用户
+				); 
+			if (admin != null) {
+				return admin.getId();
+			}else{
+				return null;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	@Test
 	public void test(){
 		AdminDao adminDao = new AdminDao();
 		Admin admin = new Admin("1000","jpzhu","560128","13101900@qq.com",false);
 		System.out.println(admin);
 		adminDao.addAdmin(admin);
+		System.out.println("UUID:"+adminDao.getUUID(admin));
 		
 	}
 }
