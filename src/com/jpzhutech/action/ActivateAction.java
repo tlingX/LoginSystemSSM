@@ -3,6 +3,7 @@ package com.jpzhutech.action;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.junit.Test;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,5 +48,10 @@ System.out.println("更新状态之后的admin对象为："+admin);
 
 		
 		return "activate_success";
+	}
+	
+	@Test
+	public void test(){
+		System.out.println(adminService);
 	}
 }
