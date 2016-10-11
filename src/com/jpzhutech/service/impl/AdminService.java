@@ -1,10 +1,15 @@
 package com.jpzhutech.service.impl;
 
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
 import com.jpzhutech.dao.impl.AdminDao;
 import com.jpzhutech.entity.Admin;
 import com.jpzhutech.service.IAdminService;
 
+@Component(value="adminServiceID")
 public class AdminService implements IAdminService{
 	
 	//维护数据持久层的一个对象
@@ -15,6 +20,7 @@ public class AdminService implements IAdminService{
 		return adminDao;
 	}
 
+	@Resource(name="adminDaoID")
 	public void setAdminDao(AdminDao adminDao) {
 		this.adminDao = adminDao;
 	}
@@ -33,4 +39,5 @@ public class AdminService implements IAdminService{
 		return adminDao.getUUID(admin);
 	}
 
+	
 }

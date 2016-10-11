@@ -5,12 +5,13 @@ import java.util.UUID;
 
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.junit.Test;
-import org.omg.CORBA.PUBLIC_MEMBER;
+import org.springframework.stereotype.Component;
 
 import com.jpzhutech.dao.IAdminDao;
 import com.jpzhutech.entity.Admin;
 import com.jpzhutech.utils.JdbcUtils;
 
+@Component(value="adminDaoID")
 public class AdminDao implements IAdminDao{
 	
 	    //根据用户查找数据中是否存在该用户名，如果存在返回用户名，如果不存在，则返回空
