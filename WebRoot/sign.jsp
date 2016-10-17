@@ -32,6 +32,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                spanObject.innerHTML = "用户名小于6位，请重新输入用户名".fontcolor("red");
            }
           }
+      function refreshWindows(){
+           //alert("哈哈");
+           //点击图片刷新
+           window.location.reload();   //这些功能在后续都想要替换，看能不能只刷新局部，目前看来使用JS不能实现
+      }
   </script>
   
   </head>
@@ -57,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
             
             <tr> 
-                <td colspan="2" align="center"><img src="${pageContext.request.contextPath }/ImageCreate.action" /></td> 
+                <td colspan="2" align="center"><img src="${pageContext.request.contextPath }/ImageCreate.action" onclick="refreshWindows()"/></td> 
             </tr> 
             <tr> 
                 <th> 请输入您所看到的字符</th> 
