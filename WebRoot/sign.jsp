@@ -8,14 +8,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
    <title>注册</title>
+   
+   <script type="text/javascript">
+      function showInfo(){
+           //alert("聚焦");
+           //获取span元素
+          var spanObject = document.getElementById("showinfo");
+           // alert(spanObject);  //调试语句
+           spanObject.innerHTML = "用户名至少6位，由字母、数字、下划线构成".fontcolor("green") ;
+      }
+      
+      function hideInfo(){
+           //alert("不聚焦");
+           //获取到span元素
+          var spanObject = document.getElementById("showinfo");
+          //聚焦移除时，不显示任何的文本
+          spanObject.innerHTML = "";
+          
+          //验证输入的用户名是否不够6位
+          var inputValue = document.getElementById("userNameText").value;
+          
+           if(inputValue.length < 6){
+               spanObject.innerHTML = "用户名小于6位，请重新输入用户名".fontcolor("red");
+           }
+          }
+  </script>
+  
   </head>
   
   <body>
     <form action="${pageContext.request.contextPath }/validate.action" method="post">
-        <table border="2" align="center">
+        <table border="0" align="center">
             <tr>
                 <th>用户名</th>
-                <td><input type="text" name="userName" /></td>
+                <td><input type="text" name="userName" onfocus="showInfo()" onblur="hideInfo()" id="userNameText"/></td><td><span id="showinfo"></span></td>
             </tr>
             <tr>
                 <th>密码</th>
@@ -31,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td colspan="2" align="center"><img src="${pageContext.request.contextPath }/ImageCreate.action" /></td> 
             </tr> 
             <tr> 
-                <td> 请输入您所看到的字符 :</td> 
+                <th> 请输入您所看到的字符</th> 
                 <td><input type="text" name="japtcha" value="" />   <!-- 在session中保存了name属性的值japtcha -->
                     <%=request.getAttribute("ERROR") == null ? "" :       
                      request.getAttribute("ERROR")%>
