@@ -37,19 +37,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <div></div>   <!--这个部分占20% -->
+   <div style="">   <!-- 这个部分设计整个注册界面放置的位置 -->
     <form action="${pageContext.request.contextPath }/validate.action" method="post">
-        <table border="0" align="center">
+        <table border="0" align="center" >
             <tr>
                 <th>用户名</th>
-                <td><input type="text" name="userName" onfocus="showInfo()" onblur="hideInfo()" id="userNameText"/></td><td><span id="showinfo"></span></td>
+                <td><input type="text" name="userName" onfocus="showInfo()" onblur="hideInfo()" id="userNameText" placeholder="用户名"/></td>
+                <td colspan="1"><span id="showinfo"></span></td>
             </tr>
             <tr>
                 <th>密码</th>
-                <td><input type="password" name="pwd" /></td>
+                <td><input type="password" name="pwd" placeholder="密码" /></td>
             </tr>
             <tr>
                 <th>邮箱</th>
-                <td><input type="text" name="email" /></td>
+                <td><input type="text" name="email" placeholder="电子邮件地址" type="email" /></td>
             </tr>
             
             
@@ -70,5 +73,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
         </table>
     </form>
+    </div>
   </body>
 </html>
