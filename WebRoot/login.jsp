@@ -27,11 +27,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <table border="1" align="center">
             <tr>
                 <th>用户名</th>
-                <td><input type="text" value="请输入您的email" name="email"></td>
+                <td><input type="text" placeholder="用户名" name="email"></td>
             </tr>
             <tr>
                 <th>密码</th>
-                <td><input type="password" value="请输入您的密码" name="pwd"></td>
+                <td><input type="password" placeholder="密码" name="pwd"></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="提交"></td>
